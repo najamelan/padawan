@@ -1,0 +1,42 @@
+cargo-features = ["edition"]
+
+[package]
+
+	name    = "gamepad"
+	version = "0.1.0"
+	authors = ["Naja Melan <najamelan@autistici.org>"]
+	edition = '2018'
+
+
+[lib]
+
+	name = "gamepad"
+	path = "src/gamepad.rs"
+
+
+[[bin]]
+
+	name = "gamepad-mapper"
+	path = "src/main.rs"
+
+
+
+[dependencies]
+
+	gilrs          = ">=0.6.0"
+
+	# It won't compile on wayland with the newer versions, so we use a local version for development.
+	#
+	# enigo          = { path = "ressources/enigo" }
+	enigo          = ">=0.0.12"
+
+	lazy_static    = ">=1.0.1"
+	failure        = ">= 0.1.1"
+	serde_derive   = ">=1"
+	serde          = ">=1"
+	serde_yaml     = ">=0.7.5"
+
+
+[ target.'cfg(windows)'.dependencies ]
+
+	winapi = { version = "0.3", features = ["winuser"] }
