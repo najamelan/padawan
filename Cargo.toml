@@ -2,7 +2,7 @@ cargo-features = ["edition"]
 
 [package]
 
-	name    = "gamepad"
+	name    = "padawan"
 	version = "0.1.0"
 	authors = ["Naja Melan <najamelan@autistici.org>"]
 	edition = '2018'
@@ -10,13 +10,13 @@ cargo-features = ["edition"]
 
 [lib]
 
-	name = "gamepad"
-	path = "src/gamepad.rs"
+	name = "libpadawan"
+	path = "src/padawan.rs"
 
 
 [[bin]]
 
-	name = "gamepad-mapper"
+	name = "padawan"
 	path = "src/main.rs"
 
 

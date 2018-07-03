@@ -7,13 +7,13 @@
 #![warn(rust_2018_idioms)]
 
 
-use gamepad::*;
+use libpadawan::*;
 
 
 fn main()
 {
 
-	let mut pad = Pad::new();
+	let mut pad = Gamepad::new();
 
 	let config  = Config::new().expect( "Could not parse config file" );
 	let profile = config.profiles().get( "swtor_basics" ).unwrap();
@@ -22,7 +22,7 @@ fn main()
 
 	let mut all_pads = vec![ pad ];
 
-	Pad::listen( &mut all_pads );
+	Gamepad::listen( &mut all_pads );
 
 	println!("{:?}", all_pads.first() );
 

@@ -154,5 +154,3 @@ impl Action for ToggleButton
 		self.state = !self.state;
 	}
 }
-
-
