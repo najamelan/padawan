@@ -16,7 +16,7 @@ fn main()
 	let mut pad = Pad::new();
 
 	let config  = Config::new().expect( "Could not parse config file" );
-	let profile = config.profiles.first().unwrap().get( "swtor_basics" ).unwrap();
+	let profile = config.profiles().get( "swtor_basics" ).unwrap();
 
 	pad.configure( profile );
 

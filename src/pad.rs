@@ -112,31 +112,32 @@ impl Pad
 
 	/// Map configuration to actual event handlers on our inputs.
 	///
-	pub fn configure( &mut self, mappings: &Vec< MappingCfg > )
+	pub fn configure( &mut self, profile: &Profile )
 	{
-		for m in mappings { self.map_config( m ) }
+		for (input, actions) in profile { self.map_config( input.clone(), actions ) }
 	}
 
 
 
 	/// Map configuration to actual event handlers on our inputs.
+	//
 	#[inline]
-	///
-	pub fn map_config( &mut self, m: &MappingCfg )
+	//
+	pub fn map_config( &mut self, input: InputID, actions: &Vec< ActionCfg > )
 	{
-		for a in &m.map
+		for action in actions
 		{
-			match a
+			match action
 			{
-				ActionCfg::Button( which  ) => self.map_button ( m.input, Clickable::from( which ) ),
-				ActionCfg::Toggle( which  ) => self.map_toggle ( m.input, Clickable::from( which ) ),
-				ActionCfg::MouseX( pixels ) => self.map_mouse_x( m.input, *pixels                  ),
-				ActionCfg::MouseY( pixels ) => self.map_mouse_y( m.input, *pixels                  ),
-				
+				ActionCfg::Button( which  ) => self.map_button ( input, Clickable::from( which ) ),
+				ActionCfg::Toggle( which  ) => self.map_toggle ( input, Clickable::from( which ) ),
+				ActionCfg::MouseX( pixels ) => self.map_mouse_x( input, *pixels                  ),
+				ActionCfg::MouseY( pixels ) => self.map_mouse_y( input, *pixels                  ),
 
-				ActionCfg::Axis2Button( left, right, deadzone ) => 
 
-					self.map_axis2button( m.input, Clickable::from( left ), Clickable::from( right ), *deadzone ),
+				ActionCfg::Axis2Button( left, right, deadzone ) =>
+
+					self.map_axis2button( input, Clickable::from( left ), Clickable::from( right ), *deadzone ),
 			};
 		}
 

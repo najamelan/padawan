@@ -1,24 +1,19 @@
-profiles:
+swtor_basics:
 
-  - swtor_basics:
-  
-    - { input: North      , map: [ Button: '&'         ] }
-    - { input: East       , map: [ Button: é           ] }
-    - { input: South      , map: [ Button: '"'         ] }
-    - { input: West       , map: [ Button: "'"         ] }
-  
-    - { input: DPadUp     , map: [ Button: z         ] }
-    - { input: DPadDown   , map: [ Button: s         ] }
-    - { input: DPadLeft   , map: [ Button: q         ] }
-    - { input: DPadRight  , map: [ Button: d         ] }
+   North       : [ Button: '&'                ]
+   North       : [ Button: '&'                ]
+   East        : [ Button: é                  ]
+   South       : [ Button: '"'                ]
+   West        : [ Button: "'"                ]
 
-    - { input: RightThumb , map: [ Toggle: mouse_right ] }
-    - { input: RightStickX, map: [ MouseX: 3.0         ] }
-    - { input: RightStickY, map: [ MouseY: 3.0         ] }
+   DPadUp      : [ Button: z                  ]
+   DPadDown    : [ Button: s                  ]
+   DPadLeft    : [ Button: q                  ]
+   DPadRight   : [ Button: d                  ]
 
-    - { input: LeftStickX, map: [ Axis2Button: [ q, d, 0.6 ] ] }
-    - { input: LeftStickY, map: [ Axis2Button: [ s, z, 0.1 ] ] }
+   RightThumb  : [ Toggle: mouse_right        ]
+   RightStickX : [ MouseX: 3.0                ]
+   RightStickY : [ MouseY: 3.0                ]
 
-
-
-
+   LeftStickX  : [ Axis2Button: [ q, d, 0.6 ] ]
+   LeftStickY  : [ Axis2Button: [ s, z, 0.1 ] ]

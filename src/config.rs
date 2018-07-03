@@ -1,5 +1,8 @@
-use std::collections::HashMap;
-use std::path::PathBuf;
+use std:: collections::HashMap;
+use std::     convert::TryFrom;
+use std::        path::PathBuf;
+
+
 use std::env;
 use std::fs;
 use std;
@@ -12,23 +15,22 @@ use super::*;
 
 
 
-
+/// Internal representation of the yaml config.
+///
+//  This is a tuple struct to keep the yaml format as concise as possible.
+//
 #[ derive( Debug, Deserialize, Serialize, Clone, PartialEq ) ]
 //
 pub struct Config
-{
-	pub profiles: Vec< HashMap< String, Vec< MappingCfg > > >
-}
+(
+	HashMap< String, Profile >
+);
 
 
-#[ derive( Debug, Deserialize, Serialize, Clone, PartialEq ) ]
+/// A specific profile of mappings from gamepad to mouse-keyboard.
+/// A profile can be switched runtime.
 //
-pub struct MappingCfg
-{
-	pub input : InputID,
-	pub map   : Vec< ActionCfg >,
-}
-
+pub type Profile = HashMap< InputID, Vec< ActionCfg > >;
 
 
 #[ derive( Debug, Deserialize, Serialize, Clone, PartialEq ) ]
@@ -52,6 +54,26 @@ impl Config
 		let file = abs_path( "config.yml" )?;
 
 		let s: Self = serde_yaml::from_str( &fs::read_to_string( file )? )?;
+
+		Ok( s )
+	}
+
+
+	pub fn profiles( &self ) -> &HashMap< String, Profile >
+	{
+		&self.0
+	}
+}
+
+
+
+impl TryFrom< PathBuf > for Config
+{
+	type Error = Error;
+
+	fn try_from( path: PathBuf ) -> Result< Self, Error >
+	{
+		let s: Self = serde_yaml::from_str( &fs::read_to_string( path )? )?;
 
 		Ok( s )
 	}
