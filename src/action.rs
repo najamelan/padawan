@@ -37,32 +37,6 @@ impl Clickable
 }
 
 
-impl std::convert::From< &String > for Clickable
-{
-	fn from( key: &String ) -> Self
-	{
-		match key.as_ref()
-		{
-			"mouse_left"   => Clickable::Mouse   ( MouseButton::Left   ),
-			"mouse_middle" => Clickable::Mouse   ( MouseButton::Middle ),
-			"mouse_right"  => Clickable::Mouse   ( MouseButton::Right  ),
-
-			"Return"       => Clickable::Keyboard( Key::Return         ),
-
-			_              =>
-			{
-				match char::from_str( key )
-				{
-					Ok ( c ) => Clickable::Keyboard( Key::Layout( c ) ),
-					Err( e ) => panic!( "Keys must be only one char, got: {:?}", e )
-				}
-
-			}
-		}
-	}
-}
-
-
 
 // Represents an action that can be attached to a gamepad input event
 //
@@ -152,5 +126,69 @@ impl Action for ToggleButton
 		else            { self.button.press  (); }
 
 		self.state = !self.state;
+	}
+}
+
+
+
+impl std::convert::From< &String > for Clickable
+{
+	fn from( key: &String ) -> Self
+	{
+		match key.as_ref()
+		{
+			"mouse_left"   => Clickable::Mouse   ( MouseButton::Left   ),
+			"mouse_middle" => Clickable::Mouse   ( MouseButton::Middle ),
+			"mouse_right"  => Clickable::Mouse   ( MouseButton::Right  ),
+
+			"Return"       => Clickable::Keyboard( Key::Return         ),
+
+			"Tab"          => Clickable::Keyboard( Key::Tab            ),
+			"Space"        => Clickable::Keyboard( Key::Space          ),
+			"Backspace"    => Clickable::Keyboard( Key::Backspace      ),
+			"Escape"       => Clickable::Keyboard( Key::Escape         ),
+			"Super"        => Clickable::Keyboard( Key::Super          ),
+			"Command"      => Clickable::Keyboard( Key::Command        ),
+			"Windows"      => Clickable::Keyboard( Key::Windows        ),
+			"Shift"        => Clickable::Keyboard( Key::Shift          ),
+			"CapsLock"     => Clickable::Keyboard( Key::CapsLock       ),
+			"Alt"          => Clickable::Keyboard( Key::Alt            ),
+			"Option"       => Clickable::Keyboard( Key::Option         ),
+			"Control"      => Clickable::Keyboard( Key::Control        ),
+			"Home"         => Clickable::Keyboard( Key::Home           ),
+			"PageUp"       => Clickable::Keyboard( Key::PageUp         ),
+			"PageDown"     => Clickable::Keyboard( Key::PageDown       ),
+			"LeftArrow"    => Clickable::Keyboard( Key::LeftArrow      ),
+			"RightArrow"   => Clickable::Keyboard( Key::RightArrow     ),
+			"DownArrow"    => Clickable::Keyboard( Key::DownArrow      ),
+			"UpArrow"      => Clickable::Keyboard( Key::UpArrow        ),
+			"F1"           => Clickable::Keyboard( Key::F1             ),
+			"F2"           => Clickable::Keyboard( Key::F2             ),
+			"F3"           => Clickable::Keyboard( Key::F3             ),
+			"F4"           => Clickable::Keyboard( Key::F4             ),
+			"F5"           => Clickable::Keyboard( Key::F5             ),
+			"F6"           => Clickable::Keyboard( Key::F6             ),
+			"F7"           => Clickable::Keyboard( Key::F7             ),
+			"F8"           => Clickable::Keyboard( Key::F8             ),
+			"F9"           => Clickable::Keyboard( Key::F9             ),
+			"F10"          => Clickable::Keyboard( Key::F10            ),
+			"F11"          => Clickable::Keyboard( Key::F11            ),
+			"F12"          => Clickable::Keyboard( Key::F12            ),
+
+			// TODO: We could support Raw( u16 ), but it would mean changing the config type to something generic,
+			//       It's probably not worth the trouble right now.
+
+			// Represents Key::Layout
+			//
+			_              =>
+			{
+				match char::from_str( key )
+				{
+					Ok ( c ) => Clickable::Keyboard( Key::Layout( c ) ),
+					Err( e ) => panic!( "Keys must be only one char, got: {:?}", e )
+				}
+
+			}
+		}
 	}
 }
