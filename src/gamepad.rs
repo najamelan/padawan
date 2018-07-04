@@ -120,6 +120,9 @@ impl Gamepad
 
 
 	/// Map configuration to actual event handlers on our inputs.
+	//  Potential other actions:
+	//  - fire: repeatedly fire clicks (width interval)
+	//  - sequence: send other actions in a sequence (with interval?)
 	//
 	#[inline]
 	//

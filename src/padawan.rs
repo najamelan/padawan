@@ -8,6 +8,8 @@
 
 #![feature(try_from)]
 
+#![feature(nll)]
+
 use serde_derive::{ Serialize, Deserialize };
 
 mod gamepad;

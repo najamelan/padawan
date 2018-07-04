@@ -27,14 +27,16 @@ cargo-features = ["edition"]
 
 	# It won't compile on wayland with the newer versions, so we use a local version for development.
 	#
-	# enigo          = { path = "ressources/enigo" }
-	enigo          = ">=0.0.12"
+	enigo          = { path = "ressources/enigo" }
+	# enigo          = ">=0.0.12"
 
 	lazy_static    = ">=1.0.1"
 	failure        = ">= 0.1.1"
 	serde_derive   = ">=1"
 	serde          = ">=1"
 	serde_yaml     = ">=0.7.5"
+
+	clap           = { version = ">=2.32", features = ["yaml"] }
 
 
 [ target.'cfg(windows)'.dependencies ]

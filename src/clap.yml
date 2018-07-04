@@ -1,0 +1,22 @@
+name   : padawan
+version: "0.1.0"
+author : Naja Melan <najamelan@autistici.org>
+about  : Converts input from a gamepad to keyboard and mouse to enable gamepad use in software that does not support it natively.
+
+args:
+
+   - config:
+
+      short      : c
+      long       : config
+      value_name : FILE
+      help       : Sets a custom config file (defaults to config.yml)
+      takes_value: true
+
+
+   - profile:
+
+      help    : Sets the mapping profile to use
+      required: true
+      index   : 1
+
